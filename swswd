@@ -1,0 +1,133 @@
+"<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+</style>
+</head>
+
+<body>
+
+
+<h2><strong>Greenspace Play Inspection</strong></h2>
+
+<Table style='width:100%'>
+<tr>
+    <th style='background-color: #48d1cc;'<th>Site Name:</th>
+    <td><strong> "& Label5.Text &" </strong></td>
+  </tr>
+  <tr>
+    <th style='background-color: #48d1cc;'<th>Address:</th>
+    <td>"& GALSHECDULE.Selected.'Parent site address'&"</td>
+  </tr>
+  <tr>
+    <th style='background-color: #48d1cc;'<th>Inspector:</th>
+    <td> "& User().FullName &"</td>
+  </tr>
+  <tr>
+    <th style='background-color: #48d1cc;'>Route:</th>
+    <td> "& VarRoute &"</td>
+  <th style='background-color: #48d1cc;'>Frequncy:</th>
+    <td> "& GALSHECDULE.Selected.Category &"</td>
+  </tr>
+  <tr>
+    <th style='background-color: #48d1cc;'<th>Start Date/Time:</th>
+    <td> "& LookUp(ColSited, NameDescription = Label5.Text).DateInspected &"</td>
+    <th style='background-color: #48d1cc;'<th>End Date/Time:</th>
+    <td> "& Now() &"</td>
+  </tr>
+   <tr>
+    <th style='background-color: #48d1cc;'<th>Location:</th>
+    <td> "& varNearAddress&"</td>
+  </tr>
+</Table>
+
+<p>&nbsp;</p>
+
+<h2> Inspection findings: </h2>
+
+<table>
+<colgroup>
+    <col style='width:17%'>
+    <col style='width:7%'>
+    <col style='width:28%'>
+    <col style='width:7%'>
+<col style='width:28%'>
+    <col style='width:7%'>
+
+  </colgroup>
+  <tr>
+    <th style='background-color: #48d1cc;'>Item</th>
+    <th style='background-color: #48d1cc;'>Defect Identified</th> 
+    <th style='background-color: #48d1cc;'>Defect Description</th>
+    <th style='background-color: #48d1cc;'>Arrival Risk</th>
+    <th style='background-color: #48d1cc;'>Action Taken</th>
+    <th style='background-color: #48d1cc;'>Departure Risk</th>
+  </tr>"
+   &
+   Concat(ColSited, "<tr>
+  <td style='background-color: #afeeee'> "& Item &"</td>
+  <td style='text-align:center'>  "& Defect &" </td>
+  <td> "& DefectDescription &" </td>
+  <td style='text-align:center'>  "& ARisk &" </td>
+  <td>  "& Action &" </td>
+  <td style='text-align:center'> "& DRisk &" </td></tr>")
+   &
+"</table>
+
+<p>&nbsp;</p>
+
+
+<H2>Extra work identified: </H2>
+<table style='width:100%'>
+<colgroup>
+    <col style='width:25%'>
+    <col style='width:75%'>
+
+  </colgroup>
+ <tr>
+    <th style='background-color: #48d1cc;'>Item</th>
+    <th style='background-color: #48d1cc;'>Job</th>
+  </tr>"
+   &
+   Concat(Filter(ColSited, AddWork = "Yes"), "<tr>
+  <td style='background-color: #afeeee'> "& Item &"</td>
+  <td style='text-align:center'>  "& AddWorkD &" </td>
+ </tr>")
+   &
+"</table>
+
+<p>&nbsp;</p>
+
+<H2>Additional notes for this inspection: </H2>
+<p>"& NOTES.Text &"</p>
+
+<H2>Images: </H2>
+<table style='width:100%'>
+<colgroup>
+    <col style='width:25%'>
+    <col style='width:75%'>
+
+  </colgroup>
+ <tr>
+    <th style='background-color: #48d1cc;'>Item</th>
+    <th style='background-color: #48d1cc;'>Photo</th>
+  </tr>"
+   &
+  Concat(ColImages, "<tr>
+  <td style='background-color: #afeeee'> "& Item &"</td>
+  <td><img src="& Image &"style=width:150px;height:150px;> </td>
+ </tr>")
+   &
+"</table>  
+
+
+
+</body>
+</html>"
